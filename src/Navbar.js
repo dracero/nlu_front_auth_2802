@@ -6,6 +6,7 @@ import AgregarNLU from "./AgregarNLU";
 import EditarNLU from "./EditarNLU";
 import EliminarNLU from "./EliminarNLU";
 import Login from "./Login";
+import Logout from "./Logout";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import logo from './img/logo.png';
@@ -68,6 +69,8 @@ export default function Navbar() {
         <NavbarList />
         <br/>
         <Login />
+        <br/>
+        <Logout />
         
         <Switch>
           <Route path="/ver-nlus">
