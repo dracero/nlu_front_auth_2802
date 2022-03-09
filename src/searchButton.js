@@ -18,7 +18,7 @@ const SearchButton = () => {
     try{
       
       axios
-      .get(process.env.REACT_APP_URL + "nlu_structure_name?name="+ name)
+      .get(process.env.REACT_APP_URL + "nlu_structure_name?name="+ name, { withCredentials: true })
       .then(response => {
         
         if(!response.data) {

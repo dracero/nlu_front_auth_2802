@@ -18,9 +18,11 @@ const EditarNLU = () => {
   const updateNLU = (event) => {
     
     event.preventDefault();
+    
+    axios.defaults.withCredentials = true;
   
     axios
-      .put(process.env.REACT_APP_URL + "nlu_structure"+ "/" + id + "/" + "?name=" + name + "&text=" + text + "&id=")
+      .put(process.env.REACT_APP_URL + "nlu_structure"+ "/" + id + "/" + "?name=" + name + "&text=" + text)
       .then(returnedNLU => {
 
         dispatch(stateActions.state('Success'));

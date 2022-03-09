@@ -16,10 +16,12 @@ const EliminarNLU = () => {
 
   const deleteNLU = (event) => {
     
-    event.preventDefault()
+    event.preventDefault();
+
+    //axios.defaults.crossDomain = true;
   
     axios
-      .delete(process.env.REACT_APP_URL + "nlu_structure/" + id)
+      .delete(process.env.REACT_APP_URL + "nlu_structure/" + id, { withCredentials: true })
       .then(returnedNLU => {
         dispatch(stateActions.state('Success'));
         dispatch(nluActions.data({id: '', name: '', text: ''}));

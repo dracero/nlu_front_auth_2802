@@ -16,7 +16,7 @@ const AgregarNLU = () => {
     event.preventDefault();
 
     axios
-      .post(process.env.REACT_APP_URL + "nlu_structure", null, { params: newNlu})
+      .post(process.env.REACT_APP_URL + "nlu_structure", null, { params: newNlu , withCredentials: true })
       .then(returnedNLU => {
         setNewNlu({});
         setState('Success');
