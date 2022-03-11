@@ -1,22 +1,11 @@
-import { useState, useEffect} from "react";
-import Cookies from 'js-cookie';
-import { Link, useLocation } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 
 const Logout = () => {
-  const location = useLocation().pathname;
-  const [sid, setSid] = useState(false)
-  useEffect(() => {
-    Cookies.get('session') ? setSid(true) : setSid(false);
-  }, []); 
-
   return(
-    location === "/" ? 
-    <a
-      className="App-link"
-      href="http://localhost:8080/logout"
-      rel="noopener noreferrer">
-      Logout
-    </a> : null
+    <Box m={0} pt={0}>
+      <Button href="http://localhost:8080/logout" variant="outlined">Logout</Button>
+    </Box>
   )
 };
 

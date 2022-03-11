@@ -46,7 +46,7 @@ const VerNLUs = () => {
 
   useEffect(() => {
     axios
-      .get(process.env.REACT_APP_URL + "nlu_structures", { withCredentials: true }) //withCredentials para que envíe la cookie :::: { withCredentials: true }
+      .get(process.env.REACT_APP_URL + "nlu_structures", { withCredentials: true })
       .then((response) => {
         // handle success
         setNlus(response.data);

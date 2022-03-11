@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { BrowserRouter as Router, Switch, Route, Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import VerNLUs from "./VerNLUs";
@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import logo from './img/logo.png';
 import * as stateActions from "./app/actions/StateActions";
+import Cookies from 'js-cookie';
 
 import './styles.css'
 
@@ -20,7 +21,6 @@ const NavbarList = () => {
   const list = () => {
     return(
       <div>
-        <img src={logo} alt="Logo FIUBA" className="logo-img" />
         <Box m={0} pt={0}>
           <Button component={Link} to="/ver-nlus" variant="contained">Ver NLUs</Button>
         </Box>
@@ -35,10 +35,6 @@ const NavbarList = () => {
         <br/>
         <Box m={0} pt={0}>
           <Button component={Link} to="/eliminar-nlu" variant="contained">Eliminar NLU</Button>
-        </Box>
-        <br/>
-        <Box m={0} pt={0}>
-          <Button component={Link} to="/leer-nlu" variant="contained">Leer NLU</Button>
         </Box>
       </div>
     )
@@ -62,16 +58,39 @@ const NavbarButton = () => {
 };
 
 
+const Home = () => {
+  const location = useLocation().pathname
+  const [isLoged, setIsLoged] = useState(false)
+  useEffect(() => {
+    Cookies.get('isLoged') ? setIsLoged(true) : setIsLoged(false);
+  }, []);
+
+  return(
+    location === "/" ?
+      <>
+        <img src={logo} alt="Logo FIUBA" className="logo-img" />
+        <br/>
+
+        {Cookies.get('isLoged') === "true" ? 
+          <>
+            <NavbarList />
+            <br/>
+            <Logout />
+          </>
+          : <Login />
+        }
+        <br/>
+      </>
+      : null
+  )
+};
+
 export default function Navbar() {
   return (
     <Router>
       <div className="center">
-        <NavbarList />
-        <br/>
-        <Login />
-        <br/>
-        <Logout />
-        
+        <Home />
+
         <Switch>
           <Route path="/ver-nlus">
             <VerNLUs />
