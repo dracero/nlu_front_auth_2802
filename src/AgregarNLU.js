@@ -10,6 +10,7 @@ const AgregarNLU = () => {
 
   const [newNlu, setNewNlu] = useState({});
   const [state, setState] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const addNLU = (event) => {
     
@@ -23,7 +24,8 @@ const AgregarNLU = () => {
         event.target.reset();
       })
       .catch(error => {
-        errorMessage = error.response.data.name;
+        setNewNlu({});
+        setErrorMessage(error.response.data.name);
         setState('Error');
         event.target.reset();
         console.log(errorMessage);
