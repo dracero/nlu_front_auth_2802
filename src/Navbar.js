@@ -60,9 +60,9 @@ const NavbarButton = () => {
 
 const Home = () => {
   const location = useLocation().pathname
-  const [isLoged, setIsLoged] = useState(false)
+  const [token, setToken] = useState('')
   useEffect(() => {
-    Cookies.get('isLoged') ? setIsLoged(true) : setIsLoged(false);
+    Cookies.get('token') ? setToken(Cookies.get('token')): null ;
   }, []);
 
   return(
@@ -71,7 +71,7 @@ const Home = () => {
         <img src={logo} alt="Logo FIUBA" className="logo-img" />
         <br/>
 
-        {Cookies.get('isLoged') === "true" ? 
+        {token ? 
           <>
             <NavbarList />
             <br/>
