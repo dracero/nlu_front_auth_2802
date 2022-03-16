@@ -22,7 +22,7 @@ const SearchButton = () => {
       .then(response => {
         
         if(!response.data) {
-          
+
           dispatch(stateActions.state('ErrorNotFound'));
           dispatch(nluActions.data({id: '', name: '', text: ''}));
           console.log('Error: no existe una estructura con el nombre ' + name + '');
@@ -40,19 +40,21 @@ const SearchButton = () => {
         }
       })
       .catch(error => {
-        let errorMessage = error//.response.data.name;
+        let errorMessage = error //.response.data.name;
         dispatch(stateActions.state('ErrorNotFound'));
         dispatch(nluActions.data({id: '', name: '', text: ''}));
         dispatch(nluActions.name(''));
         console.log(errorMessage);
 
-        throw error;
+
+        document.getElementById("outlined-basic-name").value = '';
+
+        throw error; // <-- esto no funciona
       }
     );
 
     } catch (e) {
 
-      
 
       throw e;
     }

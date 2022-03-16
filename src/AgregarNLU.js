@@ -28,7 +28,7 @@ const AgregarNLU = () => {
         setErrorMessage(error.response.data.name);
         setState('Error');
         event.target.reset();
-        console.log(errorMessage);
+        console.log(error.response.data.name); // console.log(errorMessage); <-- antes estaba esto y no imprimia nada
       })
   }
 

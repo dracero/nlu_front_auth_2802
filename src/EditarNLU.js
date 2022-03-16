@@ -30,9 +30,8 @@ const EditarNLU = () => {
         event.target.reset();
       })
       .catch(error => {
-        const errorMessage = error.response.data.name;
-        dispatch(stateActions.state('ErrorDuplicate'));
-        console.log(errorMessage);
+        //dispatch(stateActions.state('ErrorDuplicate'));
+        console.log(error.response.data.name);
       })
   }
 
