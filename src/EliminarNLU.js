@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as nluActions from "./app/actions/NluActions";
 import * as stateActions from "./app/actions/StateActions";
@@ -13,13 +13,19 @@ const EliminarNLU = () => {
   const dispatch = useDispatch();
   const id = useSelector((store) => store.nlu.id);
   const state = useSelector((store) => store.state.state);
+  let valor = document.cookie.split("token=");
+  const cookie = useState(valor[1]);
 
   const deleteNLU = (event) => {
     
     event.preventDefault();
   
     axios
-      .delete(process.env.REACT_APP_URL + "nlu_structure/" + id)
+      .delete(process.env.REACT_APP_URL + "nlu_structure/" + id,{
+        headers: {
+          'Authorization': `Bearer ${cookie[0]}`
+         }
+        })
       .then(returnedNLU => {
         dispatch(stateActions.state('Success'));
         dispatch(nluActions.data({id: '', name: '', text: ''}));

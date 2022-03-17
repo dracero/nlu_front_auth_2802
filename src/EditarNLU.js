@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as nluActions from "./app/actions/NluActions";
 import * as stateActions from "./app/actions/StateActions";
@@ -14,13 +14,14 @@ const EditarNLU = () => {
   const id = useSelector((store) => store.nlu.id);
   const name = useSelector((store) => store.nlu.name);
   const text = useSelector((store) => store.nlu.text);
+  let valor = document.cookie.split("token=");
+  const cookie = useState(valor[1]);
 
   const updateNLU = (event) => {
-    
     event.preventDefault();
       
     axios
-      .put(process.env.REACT_APP_URL + "nlu_structure"+ "/" + id + "/" + "?name=" + name + "&text=" + text)
+      .put(process.env.REACT_APP_URL + "nlu_structure"+ "/" + id + "/" + "?name=" + name + "&text=" + text + "&secret_token="+cookie[0], { withCredentials: true })
       .then(returnedNLU => {
 
         dispatch(stateActions.state('Success'));
