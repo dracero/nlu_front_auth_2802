@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 const Login = () => {
   return(
     <Box m={0} pt={0}>
-      <Button href="http://bckendnlu0322.herokuapp.com/auth/google" variant="outlined">Login</Button>
+      <Button href="https://bckendnlu0322.herokuapp.com/auth/google" variant="outlined">Login</Button>
     </Box>
   )
 };
